@@ -1,13 +1,18 @@
 <?php $render('header', ['titulo' => 'geral']); ?>
 
+<pre>
+<?php
+print_r($materia);
+
+?>
+</pre>
 
 <div class="content">
     <div class="geral">
         <div class="form-container">
             <form method="get">
                 <div class="form">
-                    
-                    <a href=""><div class="icon" title="Adicionar Matéria"><i class="fa-solid fa-folder-plus"></i></div></a>
+
                     <input type="date" name="dataInicial" title="Período Inicial">
 
                     <input type="date" name="dataFinal" title="Período Final">
@@ -41,95 +46,113 @@
         </div>
         <br>
         <div>
-            <h2 style="text-align: center;">Desempenho por matéria</h2>
-            <table class="table-desempenho">
-                <tr>
-                    <th><a href="<?=$base;?>/materia/5">Direito Constitucional</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                
-                
-                
-            </table>
+            <?php if (!empty($materia)) : ?>
+                <h2 style="text-align: center;">Desempenho por matéria</h2>
+                <table class="table-desempenho">
+                    <?php foreach ($variable as $key => $value) :?>
+                      
+
+
+                    <?php endforeach ?>
+                    <tr>
+                        <th><a href="<?= $base; ?>/materia/5">Direito Constitucional</a></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de erros</th>
+                        <th class="taxa-acerto">Taxa de acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao">10</td>
+                        <td class="corretas">10</td>
+                        <td class="erradas">5</td>
+                        <td class="taxa-erro">5%</td>
+                        <td class="taxa-acerto">10%</td>
+                    </tr>
+                    <tr>
+                        <th><a href="/materia">Direito Constitucional</a></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de erros</th>
+                        <th class="taxa-acerto">Taxa de acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao">10</td>
+                        <td class="corretas">10</td>
+                        <td class="erradas">5</td>
+                        <td class="taxa-erro">5%</td>
+                        <td class="taxa-acerto">10%</td>
+                    </tr>
+                    <tr>
+                        <th><a href="/materia">Direito Constitucional</a></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de erros</th>
+                        <th class="taxa-acerto">Taxa de acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao">10</td>
+                        <td class="corretas">10</td>
+                        <td class="erradas">5</td>
+                        <td class="taxa-erro">5%</td>
+                        <td class="taxa-acerto">10%</td>
+                    </tr>
+                    <tr>
+                        <th><a href="/materia">Direito Constitucional</a></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de erros</th>
+                        <th class="taxa-acerto">Taxa de acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao">10</td>
+                        <td class="corretas">10</td>
+                        <td class="erradas">5</td>
+                        <td class="taxa-erro">5%</td>
+                        <td class="taxa-acerto">10%</td>
+                    </tr>
+                    <tr>
+                        <th><a href="/materia">Direito Constitucional</a></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de erros</th>
+                        <th class="taxa-acerto">Taxa de acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao">10</td>
+                        <td class="corretas">10</td>
+                        <td class="erradas">5</td>
+                        <td class="taxa-erro">5%</td>
+                        <td class="taxa-acerto">10%</td>
+                    </tr>
+
+
+
+                </table>
+            <?php endif ?>
         </div>
     </div>
+    <div class="add-info">
+        <h3 style="text-align: center;">Adicionar Matéria</h3>
+        <form method="post">
+            <div style="text-align: center;">
 
+                <label for="materia">Matéria</label>
+                <input type="text" name="materia">
+
+                <input type="submit" value="Adicionar">
+            </div>
+        </form>
+    </div>
 </div>
 
 </body>
