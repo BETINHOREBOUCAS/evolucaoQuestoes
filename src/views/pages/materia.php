@@ -1,4 +1,4 @@
-<?php $render('header', ['titulo' => 'geral']); ?>
+<?php $render('header', ['titulo' => 'de materia']); ?>
 
 
 <div class="content">
@@ -6,8 +6,10 @@
         <div class="form-container">
             <form method="get">
                 <div class="form">
-                    
-                    <a href=""><div class="icon" title="Adicionar Matéria"><i class="fa-solid fa-folder-plus"></i></div></a>
+                <a href="<?=$base;?>"><div class="icon" style="color: blue;" title="Página Inicial"><i class="fa-solid fa-house"></i></div></a>
+                    <a href="">
+                        <div class="icon" title="Adicionar Conteúdo"><i class="fa-solid fa-folder-plus"></i></div>
+                    </a>
                     <input type="date" name="dataInicial" title="Período Inicial">
 
                     <input type="date" name="dataFinal" title="Período Final">
@@ -41,10 +43,10 @@
         </div>
         <br>
         <div>
-            <h2 style="text-align: center;">Desempenho por matéria</h2>
+            <h2 style="text-align: center;">Desempenho por conteúdo</h2>
             <table class="table-desempenho">
                 <tr>
-                    <th><a href="<?=$base;?>/materia/5">Direito Constitucional</a></th>
+                    <th><a href="/materia">Conteúdos</a></th>
                     <th class="resolucao">Resoluções</th>
                     <th class="corretas">Corretas</th>
                     <th class="erradas">Erradas</th>
@@ -60,7 +62,7 @@
                     <td class="taxa-acerto">10%</td>
                 </tr>
                 <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
+                    <th><a href="/materia">Conteúdos</a></th>
                     <th class="resolucao">Resoluções</th>
                     <th class="corretas">Corretas</th>
                     <th class="erradas">Erradas</th>
@@ -76,7 +78,7 @@
                     <td class="taxa-acerto">10%</td>
                 </tr>
                 <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
+                    <th><a href="/materia">Conteúdos</a></th>
                     <th class="resolucao">Resoluções</th>
                     <th class="corretas">Corretas</th>
                     <th class="erradas">Erradas</th>
@@ -92,7 +94,7 @@
                     <td class="taxa-acerto">10%</td>
                 </tr>
                 <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
+                    <th><a href="/materia">Conteúdos</a></th>
                     <th class="resolucao">Resoluções</th>
                     <th class="corretas">Corretas</th>
                     <th class="erradas">Erradas</th>
@@ -108,7 +110,7 @@
                     <td class="taxa-acerto">10%</td>
                 </tr>
                 <tr>
-                    <th><a href="/materia">Direito Constitucional</a></th>
+                    <th><a href="/materia">Conteúdos</a></th>
                     <th class="resolucao">Resoluções</th>
                     <th class="corretas">Corretas</th>
                     <th class="erradas">Erradas</th>
@@ -123,11 +125,35 @@
                     <td class="taxa-erro">5%</td>
                     <td class="taxa-acerto">10%</td>
                 </tr>
-                
-                
-                
+
+
+
             </table>
         </div>
+    </div>
+
+    <div class="add-info">
+        <h3 style="text-align: center;">Adicionar Informações</h3>
+        <form method="post">
+            <div style="text-align: center;">
+                <label for="conteudo">Conteúdo</label>
+                <select name="conteudo">
+                    <option></option>
+                    <option>Adm. Publica</option>
+                </select>
+
+                <label for="resolucao">Questões Resolvidas</label>
+                <input type="number" name="resolucao">
+
+                <label for="certa">Nº de Acertos</label>
+                <input type="number" name="certa">
+
+                <label for="erradas">Nº de Erros</label>
+                <input type="number" name="erro">
+
+                <input type="submit" value="Adicionar">
+            </div>
+        </form>
     </div>
 
 </div>

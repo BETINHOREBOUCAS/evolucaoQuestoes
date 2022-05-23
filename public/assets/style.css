@@ -19,7 +19,7 @@ select {
     border: 1px solid rgb(173, 172, 172);
 }
 
-input[type="button"] {
+input[type="submit"] {
     height: 30px;
     width: 40%;
     border: none;
@@ -27,6 +27,27 @@ input[type="button"] {
     color: white;
     border-radius: 5px;
     background-color: rgb(75, 65, 226);
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #dddddd;
+  }
+
+  a {
+    color: rgb(47, 47, 48);
+    text-decoration: none;
 }
 
 .cabecalho {
@@ -46,9 +67,14 @@ input[type="button"] {
 .geral {
     margin: 20px;
     border: 1px solid #a8a8a8;
-    height: 300px;
-    width: 75%;
+    width: 100%;
     background-color: white;
+}
+
+.icon {
+    font-size: 20pt;
+    margin-left: 10px;
+    color: rgb(33, 153, 103);
 }
 
 .form-container {
@@ -77,6 +103,35 @@ input[type="button"] {
 }
 
 .result-title {
+    font-weight: bold;
+    color: #787879;
+}
+
+.result-value {
+    font-weight: bold;
+}
+
+.resolucao {
+    color: #d37f00;
+}
+
+.corretas {
+    color: #24bd7d;
+}
+
+.erradas {
+    color: red;
+}
+
+.taxa-acerto {
+    color: #0067FF;
+}
+
+.taxa-erro {
+    color: rgb(192, 41, 117);
+}
+
+.table-desempenho {
 
 }
 
@@ -90,10 +145,25 @@ input[type="button"] {
 
 
 
-.info {
+.add-info {
     margin: 20px;
     border: 1px solid #a8a8a8;
-    height: 300px;
     width: 25%;
     background-color: white;
+}
+
+.add-info input {
+    width: 90%;
+    height: 29px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(173, 172, 172);
+}
+
+.add-info select {
+    width: 91%;
+    height: 31px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(173, 172, 172);
 }
