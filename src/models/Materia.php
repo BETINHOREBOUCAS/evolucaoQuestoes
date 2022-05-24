@@ -51,4 +51,18 @@ class Materia extends Model {
             return false;
         }
     }
+
+    public static function getResult($table, $id) {
+        $pdo = Conection::sqlSelect();
+
+        $sql = "SELECT * FROM `$table` where id_materia = $id";    
+        $result = $pdo->query($sql);
+        $sql = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($result->rowCount()>0) {
+            return $sql;
+        } else {
+            return false;
+        }
+    }
 }

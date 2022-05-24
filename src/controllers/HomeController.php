@@ -2,14 +2,17 @@
 namespace src\controllers;
 
 use \core\Controller;
+use src\handlers\AcessorHandlers;
 use src\models\Materia;
 
 class HomeController extends Controller {
 
     public function index() {
-        $dados['materia'] = Materia::getInfo('materias');
-        if ($dados['materia'] == false) {
-            $dados['materia'] = [];
+        $materia = Materia::getInfo('materias');
+        $conteudo = Materia::getInfo('conteudos');
+        
+        if ($materia != false) {
+            $dados['materia'] = AcessorHandlers::getConteudo($materia);
         }
         $this->render('home', $dados);
     }
