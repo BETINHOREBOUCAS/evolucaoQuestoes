@@ -2,8 +2,7 @@
 
 <pre>
 <?php
-//print_r($viewData);
-
+//print_r($valores_totais);
 ?>
 </pre>
 
@@ -25,51 +24,53 @@
         <div class="result">
             <div class="result-content">
                 <div class="result-title">Total de Resoluções</div>
-                <div class="result-value resolucao">10</div>
+                <div class="result-value resolucao"><?=$valores_totais['total_resolucao'];?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Resoluções Corretas</div>
-                <div class="result-value corretas">10</div>
+                <div class="result-value corretas"><?=$valores_totais['total_corretas'];?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Resoluções Erradas</div>
-                <div class="result-value erradas">10</div>
+                <div class="result-value erradas"><?=$valores_totais['total_erradas'];?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de erros</div>
-                <div class="result-value taxa-erro">10%</div>
+                <div class="result-value taxa-erro"><?= number_format(($valores_totais['total_erradas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%"?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de acerto</div>
-                <div class="result-value taxa-acerto">10%</div>
+                <div class="result-value taxa-acerto"><?= number_format(($valores_totais['total_corretas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%"?></div>
             </div>
         </div>
         <br>
         <div>
-            <?php if (!empty($materia)) : ?>
+            <?php if (!empty($materias)) : ?>
+
                 <h2 style="text-align: center;">Desempenho por matéria</h2>
                 <table class="table-desempenho">
-                    <?php foreach ($materia as $key => $value) :?>
+                    <?php foreach ($materias as $key => $value) : ?>
+                        
                         <tr>
-                        <th><a href="<?= $base; ?>/materia/5"><?=$key?></a></th>
-                        <th class="resolucao">Resoluções</th>
-                        <th class="corretas">Corretas</th>
-                        <th class="erradas">Erradas</th>
-                        <th class="taxa-erro">Taxas de erros</th>
-                        <th class="taxa-acerto">Taxa de acertos</th>
-                    </tr>
+                            <th><a href="<?= $base; ?>/materia/5"><?= $key ?></a></th>
+                            <th class="resolucao">Resoluções</th>
+                            <th class="corretas">Corretas</th>
+                            <th class="erradas">Erradas</th>
+                            <th class="taxa-erro">Taxas de erros</th>
+                            <th class="taxa-acerto">Taxa de acertos</th>
+                        </tr>
 
-                    <tr>
-                        <td></td>
-                        <td class="resolucao">10</td>
-                        <td class="corretas">10</td>
-                        <td class="erradas">5</td>
-                        <td class="taxa-erro">5%</td>
-                        <td class="taxa-acerto">10%</td>
-                    </tr>
+                        <tr>
+                            <td></td>
+                            <td class="resolucao"><?= $value['resolucao'] ?></td>
+                            <td class="corretas"><?= $value['corretas'] ?></td>
+                            <td class="erradas"><?= $value['erradas'] ?></td>
+                            <td class="taxa-erro"><?= number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".")."%"?></td>
+                            <td class="taxa-acerto"><?= number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".")."%"?></td>
+                        </tr>
 
                     <?php endforeach ?>
-                    
+
                 </table>
             <?php endif ?>
         </div>

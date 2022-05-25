@@ -14,9 +14,7 @@ class HomeController extends Controller {
         
         if ($materias != false) {
             $dados['materias'] = CalculadorHandlers::getValores($materias);
-        echo "Array materia home controller <hr> <pre>";
-        print_r($dados);
-        echo "<pre> <hr><br>";
+            $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias);
         }
         $this->render('home', $dados);
     }
