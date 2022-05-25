@@ -3,16 +3,20 @@ namespace src\controllers;
 
 use \core\Controller;
 use src\handlers\AcessorHandlers;
+use src\handlers\CalculadorHandlers;
 use src\models\Materia;
 
 class HomeController extends Controller {
 
     public function index() {
-        $materia = Materia::getInfo('materias');
-        $conteudo = Materia::getInfo('conteudos');
+        $dados = [];
+        $materias = Materia::getResult();
         
-        if ($materia != false) {
-            $dados['materia'] = AcessorHandlers::getConteudo($materia);
+        if ($materias != false) {
+            $dados['materias'] = CalculadorHandlers::getValores($materias);
+        echo "Array materia home controller <hr> <pre>";
+        print_r($dados);
+        echo "<pre> <hr><br>";
         }
         $this->render('home', $dados);
     }

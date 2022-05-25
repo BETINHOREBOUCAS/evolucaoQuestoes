@@ -52,10 +52,13 @@ class Materia extends Model {
         }
     }
 
-    public static function getResult($table, $id) {
+    public static function getResult() {
         $pdo = Conection::sqlSelect();
 
-        $sql = "SELECT * FROM `$table` where id_materia = $id";    
+        $sql = "SELECT materias.id AS id_materia, materias.materia, conteudos.id AS id_conteudo, conteudos.conteudo, resolucoes.resolucoes, resolucoes.corretas, resolucoes.erradas 
+        FROM conteudos 
+        INNER JOIN materias ON materias.id = conteudos.id_materia 
+        INNER JOIN resolucoes on conteudos.id = resolucoes.id_conteudo";    
         $result = $pdo->query($sql);
         $sql = $result->fetchAll(PDO::FETCH_ASSOC);
 
