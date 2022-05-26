@@ -30,12 +30,28 @@ class HomeController extends Controller {
         $this->redirect('/');
     }
 
-    public function materia() {
-        $this->render('materia');
+    public function materia($argumento) {
+        $id_materia = $argumento['materia'];
+
+        $dados = [];
+        $materias = Materia::getResultConteudo($id_materia);
+        if ($materias != false) {
+            $dados['materias'] = CalculadorHandlers::getConteudo($materias);
+            //$dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias);
+        }
+        $this->render('materia', $dados);
     }
 
     //Adiciona conteudo da matéria
-    public function materiaAction() {
-        $this->redirect('/materia/8');
+    public function materiaAction($argumento) {
+        $id_materia = $argumento['materia'];
+        $conteudo['id_materia'] = $id_materia;
+        $conteudo['id_conteudo'] = filter_input(INPUT_POST, 'conteudo', FILTER_DEFAULT);
+        $conteudo['resolucoes'] = filter_input(INPUT_POST, 'resolucao', FILTER_DEFAULT);
+        $conteudo['corretas'] = filter_input(INPUT_POST, 'certa', FILTER_DEFAULT);
+        $conteudo['erradas'] = filter_input(INPUT_POST, 'erro', FILTER_DEFAULT);
+        
+        Materia::add("resolucoes", $conteudo);
+        $this->redirect("/materia/$id_materia");
     }    
 }

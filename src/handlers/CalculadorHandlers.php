@@ -62,4 +62,39 @@ class CalculadorHandlers
 
         return $valores;
     }
+
+    public static function getConteudo ($materias) {
+        foreach ($materias as $key => $value) {
+            $conteudo[] = $value['id_conteudo'];
+        }
+        $conteudo = array_unique($conteudo);
+        sort($materias);
+
+        $resolução = 0;
+        $corretas = 0;
+        $erradas = 0;
+        foreach ($conteudo as $value) {
+
+            foreach ($materias as $resultados) {
+
+                if ($value == $resultados['id_conteudo']) {
+                    $resolução += $resultados['resolucoes'];
+                    $corretas += $resultados['corretas'];
+                    $erradas += $resultados['erradas'];
+
+                    $valores[$resultados['conteudo']]['id_conteudo'] = $resultados['id_conteudo'];
+                    $valores[$resultados['conteudo']]['resolucao'] = $resolução;
+                    $valores[$resultados['conteudo']]['corretas'] = $corretas;
+                    $valores[$resultados['conteudo']]['erradas'] = $erradas;                    
+                } else {
+                    $resolução = 0;
+                    $corretas = 0;
+                    $erradas = 0;
+                }
+            }
+        }
+        ksort($valores);
+        return $valores;
+        
+    }
 }

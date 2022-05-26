@@ -52,7 +52,7 @@
                     <?php foreach ($materias as $key => $value) : ?>
                         
                         <tr>
-                            <th><a href="<?= $base."materia/".$value['id_materia']; ?>"><?= $key ?></a></th>
+                            <th><a href="<?= $base."/materia/".$value['id_materia']; ?>"><?= $key ?></a></th>
                             <th class="resolucao">Resoluções</th>
                             <th class="corretas">Corretas</th>
                             <th class="erradas">Erradas</th>

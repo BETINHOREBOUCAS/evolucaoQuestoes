@@ -1,15 +1,30 @@
 <?php $render('header', ['titulo' => 'de materia']); ?>
 
+<pre>
+<?php
+
+//print_r($viewData);
+$resolucao = 0;
+$corretas = 0;
+$erradas = 0;
+foreach ($materias as $key => $value) {
+    $resolucao += $value['resolucao'];
+    $corretas += $value['corretas'];
+    $erradas += $value['erradas'];
+}
+
+?>
+</pre>
 
 <div class="content">
     <div class="geral">
         <div class="form-container">
             <form method="get">
                 <div class="form">
-                <a href="<?=$base;?>"><div class="icon" style="color: blue;" title="Página Inicial"><i class="fa-solid fa-house"></i></div></a>
-                    <a href="">
-                        <div class="icon" title="Adicionar Conteúdo"><i class="fa-solid fa-folder-plus"></i></div>
+                    <a href="<?= $base; ?>">
+                        <div class="icon" style="color: blue;" title="Página Inicial"><i class="fa-solid fa-house"></i></div>
                     </a>
+
                     <input type="date" name="dataInicial" title="Período Inicial">
 
                     <input type="date" name="dataFinal" title="Período Final">
@@ -18,117 +33,66 @@
                 </div>
             </form>
         </div>
+        <div class="form-container">
+            <form method="post" action="<?=$base;?>/materia/(id_materia)">                
+                <div class="form">
+
+                    <input type="text" name="addconteudo" placeholder="Ex: Princípios da Constituição">
+
+                    <input type="submit" value="Adicionar Conteúdo">
+                </div>
+            </form>
+        </div>
         <hr>
         <div class="result">
             <div class="result-content">
                 <div class="result-title">Total de Resoluções</div>
-                <div class="result-value resolucao">10</div>
+                <div class="result-value resolucao"><?= $resolucao; ?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Resoluções Corretas</div>
-                <div class="result-value corretas">10</div>
+                <div class="result-value corretas"><?= $corretas; ?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Resoluções Erradas</div>
-                <div class="result-value erradas">10</div>
+                <div class="result-value erradas"><?= $erradas; ?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de erros</div>
-                <div class="result-value taxa-erro">10%</div>
+                <div class="result-value taxa-erro"><?= $resolucao > 0 ? number_format(($erradas / $resolucao) * 100, '2', ',', '.'):0 ?>%</div>
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de acerto</div>
-                <div class="result-value taxa-acerto">10%</div>
+                <div class="result-value taxa-acerto"><?= $resolucao > 0 ? number_format(($corretas / $resolucao) * 100, '2', ',', '.'):0 ?>%</div>
             </div>
         </div>
         <br>
         <div>
-            <h2 style="text-align: center;">Desempenho por conteúdo</h2>
-            <table class="table-desempenho">
-                <tr>
-                    <th><a href="/materia">Conteúdos</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Conteúdos</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Conteúdos</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Conteúdos</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
-                <tr>
-                    <th><a href="/materia">Conteúdos</a></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de erros</th>
-                    <th class="taxa-acerto">Taxa de acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao">10</td>
-                    <td class="corretas">10</td>
-                    <td class="erradas">5</td>
-                    <td class="taxa-erro">5%</td>
-                    <td class="taxa-acerto">10%</td>
-                </tr>
+            <?php if (!empty($materias)) : ?>
+                <h2 style="text-align: center;">Desempenho por conteúdo</h2>
+                <table class="table-desempenho">
+                    <?php foreach ($materias as $key => $value) : ?>
+                        <tr>
+                            <th><?= $key ?></th>
+                            <th class="resolucao">Resoluções</th>
+                            <th class="corretas">Corretas</th>
+                            <th class="erradas">Erradas</th>
+                            <th class="taxa-erro">Taxas de erros</th>
+                            <th class="taxa-acerto">Taxa de acertos</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="resolucao"><?= $value['resolucao'] ?></td>
+                            <td class="corretas"><?= $value['corretas'] ?></td>
+                            <td class="erradas"><?= $value['erradas'] ?></td>
+                            <td class="taxa-erro"><?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?></td>
+                            <td class="taxa-acerto"><?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?></td>
+                        </tr>
+                    <?php endforeach ?>
 
 
-
-            </table>
+                </table>
+            <?php endif ?>
         </div>
     </div>
 
@@ -137,19 +101,21 @@
         <form method="post">
             <div style="text-align: center;">
                 <label for="conteudo">Conteúdo</label>
-                <select name="conteudo">
+                <select name="conteudo" required>
                     <option></option>
-                    <option>Adm. Publica</option>
+                    <?php foreach ($materias as $key => $value) : ?>
+                        <option value="<?=$value['id_conteudo']?>"><?=$key;?></option>
+                    <?php endforeach ?>
                 </select>
 
                 <label for="resolucao">Questões Resolvidas</label>
-                <input type="number" name="resolucao">
+                <input type="number" name="resolucao" required>
 
                 <label for="certa">Nº de Acertos</label>
-                <input type="number" name="certa">
+                <input type="number" name="certa" required>
 
                 <label for="erradas">Nº de Erros</label>
-                <input type="number" name="erro">
+                <input type="number" name="erro" required>
 
                 <input type="submit" value="Adicionar">
             </div>
