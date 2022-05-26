@@ -27,9 +27,10 @@ class CalculadorHandlers
                     $corretas += $resultados['corretas'];
                     $erradas += $resultados['erradas'];
 
+                    $valores[$resultados['materia']]['id_materia'] = $resultados['id_materia'];
                     $valores[$resultados['materia']]['resolucao'] = $resolução;
                     $valores[$resultados['materia']]['corretas'] = $corretas;
-                    $valores[$resultados['materia']]['erradas'] = $erradas;
+                    $valores[$resultados['materia']]['erradas'] = $erradas;                    
                 } else {
                     $resolução = 0;
                     $corretas = 0;

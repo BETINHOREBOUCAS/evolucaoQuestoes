@@ -22,7 +22,11 @@ class HomeController extends Controller {
     //Adiciona uma nova matéria
     public function addMateria() {
         $materia['materia'] = filter_input(INPUT_POST, 'materia', FILTER_DEFAULT);
-        Materia::add('materias', $materia);
+        $conteudo['conteudo'] = filter_input(INPUT_POST, 'conteudo', FILTER_DEFAULT);
+        $idMateria = Materia::add('materias', $materia);
+        $conteudo['id_materia'] = $idMateria;
+        $idConteudo = Materia::add('conteudos', $conteudo);
+        Materia::add('resolucoes', ['resolucoes' => 0, "corretas" => 0, "erradas" => 0, "id_conteudo" => $idConteudo, "id_materia" => $idMateria]);
         $this->redirect('/');
     }
 

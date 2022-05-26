@@ -58,7 +58,7 @@ class Materia extends Model {
         $sql = "SELECT materias.id AS id_materia, materias.materia, conteudos.id AS id_conteudo, conteudos.conteudo, resolucoes.resolucoes, resolucoes.corretas, resolucoes.erradas 
         FROM conteudos 
         INNER JOIN materias ON materias.id = conteudos.id_materia 
-        INNER JOIN resolucoes on conteudos.id = resolucoes.id_conteudo";    
+        INNER JOIN resolucoes on conteudos.id = resolucoes.id_conteudo ORDER BY materias.materia";    
         $result = $pdo->query($sql);
         $sql = $result->fetchAll(PDO::FETCH_ASSOC);
 

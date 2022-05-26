@@ -2,7 +2,7 @@
 
 <pre>
 <?php
-//print_r($valores_totais);
+//print_r($viewData);
 ?>
 </pre>
 
@@ -52,7 +52,7 @@
                     <?php foreach ($materias as $key => $value) : ?>
                         
                         <tr>
-                            <th><a href="<?= $base; ?>/materia/5"><?= $key ?></a></th>
+                            <th><a href="<?= $base."materia/".$value['id_materia']; ?>"><?= $key ?></a></th>
                             <th class="resolucao">Resoluções</th>
                             <th class="corretas">Corretas</th>
                             <th class="erradas">Erradas</th>
@@ -65,8 +65,8 @@
                             <td class="resolucao"><?= $value['resolucao'] ?></td>
                             <td class="corretas"><?= $value['corretas'] ?></td>
                             <td class="erradas"><?= $value['erradas'] ?></td>
-                            <td class="taxa-erro"><?= number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".")."%"?></td>
-                            <td class="taxa-acerto"><?= number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".")."%"?></td>
+                            <td class="taxa-erro"><?= $value['resolucao'] > 0?number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".")."%":"0%"?></td>
+                            <td class="taxa-acerto"><?= $value['resolucao'] > 0?number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".")."%":"0%"?></td>
                         </tr>
 
                     <?php endforeach ?>
@@ -81,7 +81,10 @@
             <div style="text-align: center;">
 
                 <label for="materia">Matéria</label>
-                <input type="text" name="materia">
+                <input type="text" name="materia" required>
+
+                <label for="conteudo">Conteúdo</label>
+                <input type="text" name="conteudo" required>
 
                 <input type="submit" value="Adicionar">
             </div>
