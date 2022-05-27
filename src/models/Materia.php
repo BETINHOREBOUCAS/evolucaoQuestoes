@@ -11,7 +11,7 @@ class Materia extends Model {
 
         $data = new DateTime();
         $data->setTimezone(new DateTimeZone('America/Fortaleza'));
-        $dataAtutal = $data->format('d/m/Y H:i:s');
+        $dataAtutal = $data->format('Y/m/d H:i:s');
         $dados['data_inclusao'] = $dataAtutal;
 
         $pdo = Conection::sqlSelect();

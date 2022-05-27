@@ -11,5 +11,5 @@
 <body>
     
 <div class="cabecalho">
-    <div><h2>Meu desempenho <?=$titulo;?></h2></div>
+    <div><h2>Meu Desempenho <?=$titulo;?></h2></div>
 </div>

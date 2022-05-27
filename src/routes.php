@@ -7,6 +7,8 @@ $router->get('/', 'HomeController@index');
 
 $router->post('/', 'HomeController@addMateria');
 
+$router->post('/materia/{materia}/add', 'HomeController@addMateria');
+
 $router->get('/materia/{materia}', 'HomeController@materia');
 
 $router->post('/materia/{materia}', 'HomeController@materiaAction');

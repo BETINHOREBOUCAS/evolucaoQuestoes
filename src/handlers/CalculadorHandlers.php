@@ -2,8 +2,6 @@
 
 namespace src\handlers;
 
-use src\models\Materia;
-
 class CalculadorHandlers
 {
 
@@ -94,7 +92,6 @@ class CalculadorHandlers
             }
         }
         ksort($valores);
-        return $valores;
-        
+        return $valores;        
     }
 }

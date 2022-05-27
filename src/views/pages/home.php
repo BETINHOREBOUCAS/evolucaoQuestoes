@@ -22,6 +22,7 @@
         </div>
         <hr>
         <div class="result">
+        <?php if (!empty($materias)) : ?>
             <div class="result-content">
                 <div class="result-title">Total de Resoluções</div>
                 <div class="result-value resolucao"><?=$valores_totais['total_resolucao'];?></div>
@@ -36,13 +37,15 @@
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de erros</div>
-                <div class="result-value taxa-erro"><?= number_format(($valores_totais['total_erradas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%"?></div>
+                <div class="result-value taxa-erro"><?= $valores_totais['total_resolucao']> 0?number_format(($valores_totais['total_erradas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%":"0%"?></div>
             </div>
             <div class="result-content">
                 <div class="result-title">Taxa de acerto</div>
-                <div class="result-value taxa-acerto"><?= number_format(($valores_totais['total_corretas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%"?></div>
+                <div class="result-value taxa-acerto"><?= $valores_totais['total_resolucao'] > 0?number_format(($valores_totais['total_corretas'] / $valores_totais['total_resolucao']) * 100, 2, ",", ".")."%":"0%"?></div>
             </div>
+            <?php endif ?>
         </div>
+        
         <br>
         <div>
             <?php if (!empty($materias)) : ?>
@@ -52,7 +55,7 @@
                     <?php foreach ($materias as $key => $value) : ?>
                         
                         <tr>
-                            <th><a href="<?= $base."/materia/".$value['id_materia']; ?>"><?= $key ?></a></th>
+                            <th><a href="<?= $base."/materia/".$value['id_materia']; ?>"><?= ucwords($key) ?></a></th>
                             <th class="resolucao">Resoluções</th>
                             <th class="corretas">Corretas</th>
                             <th class="erradas">Erradas</th>

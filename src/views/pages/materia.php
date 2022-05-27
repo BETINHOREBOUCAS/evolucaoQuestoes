@@ -1,4 +1,7 @@
-<?php $render('header', ['titulo' => 'de materia']); ?>
+<?php
+$materia_atual = ucwords($materiaAtual['materia']);
+$render('header', ["titulo" => "de $materia_atual"]);
+?>
 
 <pre>
 <?php
@@ -34,10 +37,12 @@ foreach ($materias as $key => $value) {
             </form>
         </div>
         <div class="form-container">
-            <form method="post" action="<?=$base;?>/materia/(id_materia)">                
+            <form method="post" action="<?= $base; ?>/materia/<?=$materiaAtual['id_materia']?>/add">
                 <div class="form">
 
-                    <input type="text" name="addconteudo" placeholder="Ex: Princípios da Constituição">
+                    <input type="hidden" name="id_materia" value="<?= $materiaAtual['id_materia'];?>">
+
+                    <input type="text" name="conteudo" placeholder="Ex: Princípios da Constituição">
 
                     <input type="submit" value="Adicionar Conteúdo">
                 </div>
@@ -58,12 +63,12 @@ foreach ($materias as $key => $value) {
                 <div class="result-value erradas"><?= $erradas; ?></div>
             </div>
             <div class="result-content">
-                <div class="result-title">Taxa de erros</div>
-                <div class="result-value taxa-erro"><?= $resolucao > 0 ? number_format(($erradas / $resolucao) * 100, '2', ',', '.'):0 ?>%</div>
+                <div class="result-title">Taxa de Erros</div>
+                <div class="result-value taxa-erro"><?= $resolucao > 0 ? number_format(($erradas / $resolucao) * 100, '2', ',', '.') : 0 ?>%</div>
             </div>
             <div class="result-content">
-                <div class="result-title">Taxa de acerto</div>
-                <div class="result-value taxa-acerto"><?= $resolucao > 0 ? number_format(($corretas / $resolucao) * 100, '2', ',', '.'):0 ?>%</div>
+                <div class="result-title">Taxa de Acertos</div>
+                <div class="result-value taxa-acerto"><?= $resolucao > 0 ? number_format(($corretas / $resolucao) * 100, '2', ',', '.') : 0 ?>%</div>
             </div>
         </div>
         <br>
@@ -73,12 +78,12 @@ foreach ($materias as $key => $value) {
                 <table class="table-desempenho">
                     <?php foreach ($materias as $key => $value) : ?>
                         <tr>
-                            <th><?= $key ?></th>
+                            <th><?= ucwords($key)?></th>
                             <th class="resolucao">Resoluções</th>
                             <th class="corretas">Corretas</th>
                             <th class="erradas">Erradas</th>
-                            <th class="taxa-erro">Taxas de erros</th>
-                            <th class="taxa-acerto">Taxa de acertos</th>
+                            <th class="taxa-erro">Taxas de Erros</th>
+                            <th class="taxa-acerto">Taxa de Acertos</th>
                         </tr>
                         <tr>
                             <td></td>
@@ -104,7 +109,7 @@ foreach ($materias as $key => $value) {
                 <select name="conteudo" required>
                     <option></option>
                     <?php foreach ($materias as $key => $value) : ?>
-                        <option value="<?=$value['id_conteudo']?>"><?=$key;?></option>
+                        <option value="<?= $value['id_conteudo'] ?>"><?= $key; ?></option>
                     <?php endforeach ?>
                 </select>
 
