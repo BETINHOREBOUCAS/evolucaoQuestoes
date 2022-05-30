@@ -1,4 +1,4 @@
-<?php $render('header', ['titulo' => 'geral']); ?>
+<?php $render('header', ['titulo' => 'Geral']); ?>
 
 <pre>
 <?php
@@ -12,9 +12,9 @@
             <form method="get">
                 <div class="form">
 
-                    <input type="date" name="dataInicial" title="Período Inicial">
+                    <input type="date" name="dataInicial" title="Período Inicial" autocomplete="off">
 
-                    <input type="date" name="dataFinal" title="Período Final">
+                    <input type="date" name="dataFinal" title="Período Final" autocomplete="off">
 
                     <input type="submit" value="Gerar">
                 </div>
@@ -86,10 +86,10 @@
             <div style="text-align: center;">
 
                 <label for="materia">Matéria</label>
-                <input type="text" name="materia" required>
+                <input type="text" name="materia" required autocomplete="off">
 
                 <label for="conteudo">Conteúdo</label>
-                <input type="text" name="conteudo" required>
+                <input type="text" name="conteudo" required autocomplete="off">
 
                 <input type="submit" value="Adicionar">
             </div>
