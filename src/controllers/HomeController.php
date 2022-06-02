@@ -2,19 +2,33 @@
 namespace src\controllers;
 
 use \core\Controller;
+use DateTime;
+use DateTimeZone;
 use src\handlers\CalculadorHandlers;
 use src\models\Materia;
 
 class HomeController extends Controller {
 
     public function index() {
+        $data = new DateTime();
+        $data->setTimezone(new DateTimeZone('America/Fortaleza'));
+        $mesAtual = $data->format('m');
+        
         $dados = [];
-        $materias = Materia::getResult();
+        $materias = Materia::getResult($mesAtual, ($mesAtual-1));     
+        
         
         if ($materias != false) {
-            $dados['materias'] = CalculadorHandlers::getValores($materias);
-            $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias);
+            $dados['materiasMesAtual'] = CalculadorHandlers::getValores($materias['infoMesAtual']);
+            $dados['valores_totais_atual'] = CalculadorHandlers::getValoresTotal($materias['infoMesAtual']);
+
+            $dados['materiasMesAnterior'] = CalculadorHandlers::getValores($materias['infoMesAnterior']);
+            $dados['valores_totais_anterior'] = CalculadorHandlers::getValoresTotal($materias['infoMesAnterior']);
+
+            $dados['materiasTotal'] = CalculadorHandlers::getValores($materias['infoTotal']);
+            $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias['infoTotal']);
         }
+
         $this->render('home', $dados);
     }
 
@@ -39,16 +53,31 @@ class HomeController extends Controller {
     }
 
     public function materia($argumento) {
+
+        $data = new DateTime();
+        $data->setTimezone(new DateTimeZone('America/Fortaleza'));
+        $mesAtual = $data->format('m');
+
         $id_materia = $argumento['materia'];
 
         $dados = [];
-        $materias = Materia::getResultConteudo($id_materia);
-        $dados['materiaAtual']['id_materia'] = $id_materia;
-        $dados['materiaAtual']['materia'] = $materias[0]['materia'];
+        // Falta modificar função getResultConteudo para retorna todos os meses
+        $materias = Materia::getResultConteudo($id_materia, $mesAtual, ($mesAtual-1));
+        
         if ($materias != false) {
-            $dados['materias'] = CalculadorHandlers::getConteudo($materias);
-            $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias);
+            $dados['materiasMesAtual'] = CalculadorHandlers::getConteudo($materias['infoMesAtual']);
+            $dados['valores_totais_atual'] = CalculadorHandlers::getValoresTotal($materias['infoMesAtual']);
+
+            $dados['materiasMesAnterior'] = CalculadorHandlers::getConteudo($materias['infoMesAnterior']);
+            $dados['valores_totais_anterior'] = CalculadorHandlers::getValoresTotal($materias['infoMesAnterior']);
+
+            $dados['materiasTotal'] = CalculadorHandlers::getConteudo($materias['infoTotal']);
+            $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias['infoTotal']);
         }
+
+        /*echo "<pre>";
+        print_r($dados);
+        echo "<pre>";*/
         $this->render('materia', $dados);
     }
 
