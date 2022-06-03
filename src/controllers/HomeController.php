@@ -60,9 +60,8 @@ class HomeController extends Controller {
 
         $id_materia = $argumento['materia'];
 
-        $dados = [];
-        // Falta modificar função getResultConteudo para retorna todos os meses
         $materias = Materia::getResultConteudo($id_materia, $mesAtual, ($mesAtual-1));
+        
         
         if ($materias != false) {
             $dados['materiasMesAtual'] = CalculadorHandlers::getConteudo($materias['infoMesAtual']);
@@ -75,9 +74,8 @@ class HomeController extends Controller {
             $dados['valores_totais'] = CalculadorHandlers::getValoresTotal($materias['infoTotal']);
         }
 
-        /*echo "<pre>";
-        print_r($dados);
-        echo "<pre>";*/
+        $dados['idMateria'] = $id_materia;
+
         $this->render('materia', $dados);
     }
 
