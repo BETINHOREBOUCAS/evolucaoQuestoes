@@ -9,16 +9,6 @@
 <div class="content">
     <div class="geral">
         <div class="form-container">
-            <form method="get">
-                <div class="form">
-
-                    <input type="date" name="dataInicial" title="Período Inicial" autocomplete="off">
-
-                    <input type="date" name="dataFinal" title="Período Final" autocomplete="off">
-
-                    <input type="submit" value="Gerar">
-                </div>
-            </form>
             <h3>Resultados Gerais</h3>
         </div>
 

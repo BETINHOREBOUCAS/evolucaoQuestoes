@@ -61,7 +61,7 @@ class HomeController extends Controller {
         $id_materia = $argumento['materia'];
 
         $materias = Materia::getResultConteudo($id_materia, $mesAtual, ($mesAtual-1));
-        
+        $dados['materia'] = $materias['infoTotal'][0]['materia'];
         
         if ($materias != false) {
             $dados['materiasMesAtual'] = CalculadorHandlers::getConteudo($materias['infoMesAtual']);

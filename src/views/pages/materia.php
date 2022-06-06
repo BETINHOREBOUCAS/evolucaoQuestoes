@@ -1,6 +1,6 @@
 <?php
-//$materia_atual = ucwords($materiaAtual['materia']);
-$render('header', ["titulo" => ""]);
+$materia_atual = ucwords($materia);
+$render('header', ["titulo" => "De " . $materia_atual]);
 ?>
 
 <pre>
@@ -48,26 +48,17 @@ if (isset($materiasMesAnterior)) {
 
 <div class="content">
     <div class="geral">
+
         <div class="form-container">
-            <form method="get">
+
+            <form method="post" action="<?= $base; ?>/materia/<?= $idMateria; ?>/add">
+
                 <div class="form">
+
                     <a href="<?= $base; ?>">
                         <div class="icon" style="color: blue;" title="Página Inicial"><i class="fa-solid fa-house"></i>
                         </div>
                     </a>
-
-                    <input type="date" name="dataInicial" title="Período Inicial">
-
-                    <input type="date" name="dataFinal" title="Período Final">
-
-                    <input type="submit" value="Gerar">
-                </div>
-            </form>
-        </div>
-
-        <div class="form-container">
-            <form method="post" action="<?= $base; ?>/materia/<?= $idMateria; ?>/add">
-                <div class="form">
 
                     <input type="hidden" name="id_materia" value="<?= $idMateria; ?>">
 
@@ -85,30 +76,30 @@ if (isset($materiasMesAnterior)) {
 
         <div class="result">
             <?php if (!empty($materiasTotal)) : ?>
-            <div class="result-content">
-                <div class="result-title">Total de Resoluções</div>
-                <div class="result-value resolucao"><?= $resolucaoTotal; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Corretas</div>
-                <div class="result-value corretas"><?= $corretasTotal; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Erradas</div>
-                <div class="result-value erradas"><?= $erradasTotal; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Erros</div>
-                <div class="result-value taxa-erro">
-                    <?= $resolucaoTotal > 0 ? number_format(($erradasTotal / $resolucaoTotal) * 100, '2', ',', '.') : 0 ?>%
+                <div class="result-content">
+                    <div class="result-title">Total de Resoluções</div>
+                    <div class="result-value resolucao"><?= $resolucaoTotal; ?></div>
                 </div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Acertos</div>
-                <div class="result-value taxa-acerto">
-                    <?= $resolucaoTotal > 0 ? number_format(($corretasTotal / $resolucaoTotal) * 100, '2', ',', '.') : 0 ?>%
+                <div class="result-content">
+                    <div class="result-title">Resoluções Corretas</div>
+                    <div class="result-value corretas"><?= $corretasTotal; ?></div>
                 </div>
-            </div>
+                <div class="result-content">
+                    <div class="result-title">Resoluções Erradas</div>
+                    <div class="result-value erradas"><?= $erradasTotal; ?></div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Erros</div>
+                    <div class="result-value taxa-erro">
+                        <?= $resolucaoTotal > 0 ? number_format(($erradasTotal / $resolucaoTotal) * 100, '2', ',', '.') : 0 ?>%
+                    </div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Acertos</div>
+                    <div class="result-value taxa-acerto">
+                        <?= $resolucaoTotal > 0 ? number_format(($corretasTotal / $resolucaoTotal) * 100, '2', ',', '.') : 0 ?>%
+                    </div>
+                </div>
         </div>
         <br>
         <div>
@@ -116,33 +107,33 @@ if (isset($materiasMesAnterior)) {
             <h2 style="text-align: center;">Desempenho por conteúdo</h2>
             <table class="table-desempenho">
                 <?php foreach ($materiasTotal as $key => $value) : ?>
-                <tr>
-                    <th><?= ucwords($key) ?></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de Erros</th>
-                    <th class="taxa-acerto">Taxa de Acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao"><?= $value['resolucao'] ?></td>
-                    <td class="corretas"><?= $value['corretas'] ?></td>
-                    <td class="erradas"><?= $value['erradas'] ?></td>
-                    <td class="taxa-erro">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                    <td class="taxa-acerto">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <th><?= ucwords($key) ?></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de Erros</th>
+                        <th class="taxa-acerto">Taxa de Acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao"><?= $value['resolucao'] ?></td>
+                        <td class="corretas"><?= $value['corretas'] ?></td>
+                        <td class="erradas"><?= $value['erradas'] ?></td>
+                        <td class="taxa-erro">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                        <td class="taxa-acerto">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
 
 
             </table>
-            <?php else : ?>
+        <?php else : ?>
             <h4>Nenhuma informação encontrada para este mês</h4>
-            <?php endif ?>
+        <?php endif ?>
         </div>
     </div>
 
@@ -154,7 +145,7 @@ if (isset($materiasMesAnterior)) {
                 <select name="conteudo" required>
                     <option></option>
                     <?php foreach ($materiasTotal as $key => $value) : ?>
-                    <option value="<?= $value['id_conteudo'] ?>"><?= ucwords($key); ?></option>
+                        <option value="<?= $value['id_conteudo'] ?>"><?= ucwords($key); ?></option>
                     <?php endforeach ?>
                 </select>
 
@@ -183,28 +174,28 @@ if (isset($materiasMesAnterior)) {
         <hr>
         <div class="result">
             <?php if (!empty($materiasMesAtual)) : ?>
-            <div class="result-content">
-                <div class="result-title">Total de Resoluções</div>
-                <div class="result-value resolucao"><?= $Anterior; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Corretas</div>
-                <div class="result-value corretas"><?= $corretasAtual; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Erradas</div>
-                <div class="result-value erradas"><?= $erradasAtual; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Erros</div>
-                <div class="result-value taxa-erro">
-                    <?= $Anterior > 0 ? number_format(($erradasAtual / $Anterior) * 100, '2', ',', '.') : 0 ?>%</div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Acertos</div>
-                <div class="result-value taxa-acerto">
-                    <?= $Anterior > 0 ? number_format(($corretasAtual / $Anterior) * 100, '2', ',', '.') : 0 ?>%</div>
-            </div>
+                <div class="result-content">
+                    <div class="result-title">Total de Resoluções</div>
+                    <div class="result-value resolucao"><?= $Anterior; ?></div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Resoluções Corretas</div>
+                    <div class="result-value corretas"><?= $corretasAtual; ?></div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Resoluções Erradas</div>
+                    <div class="result-value erradas"><?= $erradasAtual; ?></div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Erros</div>
+                    <div class="result-value taxa-erro">
+                        <?= $Anterior > 0 ? number_format(($erradasAtual / $Anterior) * 100, '2', ',', '.') : 0 ?>%</div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Acertos</div>
+                    <div class="result-value taxa-acerto">
+                        <?= $Anterior > 0 ? number_format(($corretasAtual / $Anterior) * 100, '2', ',', '.') : 0 ?>%</div>
+                </div>
         </div>
         <br>
         <div>
@@ -212,33 +203,33 @@ if (isset($materiasMesAnterior)) {
             <h2 style="text-align: center;">Desempenho por conteúdo</h2>
             <table class="table-desempenho">
                 <?php foreach ($materiasMesAtual as $key => $value) : ?>
-                <tr>
-                    <th><?= ucwords($key) ?></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de Erros</th>
-                    <th class="taxa-acerto">Taxa de Acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao"><?= $value['resolucao'] ?></td>
-                    <td class="corretas"><?= $value['corretas'] ?></td>
-                    <td class="erradas"><?= $value['erradas'] ?></td>
-                    <td class="taxa-erro">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                    <td class="taxa-acerto">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <th><?= ucwords($key) ?></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de Erros</th>
+                        <th class="taxa-acerto">Taxa de Acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao"><?= $value['resolucao'] ?></td>
+                        <td class="corretas"><?= $value['corretas'] ?></td>
+                        <td class="erradas"><?= $value['erradas'] ?></td>
+                        <td class="taxa-erro">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                        <td class="taxa-acerto">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
 
 
             </table>
-            <?php else : ?>
+        <?php else : ?>
             <h4>Nenhuma informação encontrada para este mês</h4>
-            <?php endif ?>
+        <?php endif ?>
         </div>
     </div>
 
@@ -250,30 +241,30 @@ if (isset($materiasMesAnterior)) {
         <hr>
         <div class="result">
             <?php if (!empty($materiasMesAnterior)) : ?>
-            <div class="result-content">
-                <div class="result-title">Total de Resoluções</div>
-                <div class="result-value resolucao"><?= $resolucaoAnterior; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Corretas</div>
-                <div class="result-value corretas"><?= $corretasAnterior; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Resoluções Erradas</div>
-                <div class="result-value erradas"><?= $erradasAnterior; ?></div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Erros</div>
-                <div class="result-value taxa-erro">
-                    <?= $resolucaoAnterior > 0 ? number_format(($erradasAnterior / $resolucaoAnterior) * 100, '2', ',', '.') : 0 ?>%
+                <div class="result-content">
+                    <div class="result-title">Total de Resoluções</div>
+                    <div class="result-value resolucao"><?= $resolucaoAnterior; ?></div>
                 </div>
-            </div>
-            <div class="result-content">
-                <div class="result-title">Taxa de Acertos</div>
-                <div class="result-value taxa-acerto">
-                    <?= $resolucaoAnterior > 0 ? number_format(($corretasAnterior / $resolucaoAnterior) * 100, '2', ',', '.') : 0 ?>%
+                <div class="result-content">
+                    <div class="result-title">Resoluções Corretas</div>
+                    <div class="result-value corretas"><?= $corretasAnterior; ?></div>
                 </div>
-            </div>
+                <div class="result-content">
+                    <div class="result-title">Resoluções Erradas</div>
+                    <div class="result-value erradas"><?= $erradasAnterior; ?></div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Erros</div>
+                    <div class="result-value taxa-erro">
+                        <?= $resolucaoAnterior > 0 ? number_format(($erradasAnterior / $resolucaoAnterior) * 100, '2', ',', '.') : 0 ?>%
+                    </div>
+                </div>
+                <div class="result-content">
+                    <div class="result-title">Taxa de Acertos</div>
+                    <div class="result-value taxa-acerto">
+                        <?= $resolucaoAnterior > 0 ? number_format(($corretasAnterior / $resolucaoAnterior) * 100, '2', ',', '.') : 0 ?>%
+                    </div>
+                </div>
         </div>
         <br>
         <div>
@@ -281,33 +272,33 @@ if (isset($materiasMesAnterior)) {
             <h2 style="text-align: center;">Desempenho por conteúdo</h2>
             <table class="table-desempenho">
                 <?php foreach ($materiasMesAnterior as $key => $value) : ?>
-                <tr>
-                    <th><?= ucwords($key) ?></th>
-                    <th class="resolucao">Resoluções</th>
-                    <th class="corretas">Corretas</th>
-                    <th class="erradas">Erradas</th>
-                    <th class="taxa-erro">Taxas de Erros</th>
-                    <th class="taxa-acerto">Taxa de Acertos</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="resolucao"><?= $value['resolucao'] ?></td>
-                    <td class="corretas"><?= $value['corretas'] ?></td>
-                    <td class="erradas"><?= $value['erradas'] ?></td>
-                    <td class="taxa-erro">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                    <td class="taxa-acerto">
-                        <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
-                    </td>
-                </tr>
+                    <tr>
+                        <th><?= ucwords($key) ?></th>
+                        <th class="resolucao">Resoluções</th>
+                        <th class="corretas">Corretas</th>
+                        <th class="erradas">Erradas</th>
+                        <th class="taxa-erro">Taxas de Erros</th>
+                        <th class="taxa-acerto">Taxa de Acertos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="resolucao"><?= $value['resolucao'] ?></td>
+                        <td class="corretas"><?= $value['corretas'] ?></td>
+                        <td class="erradas"><?= $value['erradas'] ?></td>
+                        <td class="taxa-erro">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['erradas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                        <td class="taxa-acerto">
+                            <?= $value['resolucao'] > 0 ? number_format(($value['corretas'] / $value['resolucao']) * 100, 2, ",", ".") . "%" : "0%" ?>
+                        </td>
+                    </tr>
                 <?php endforeach ?>
 
 
             </table>
-            <?php else : ?>
+        <?php else : ?>
             <h4>Nenhuma informação encontrada para este mês</h4>
-            <?php endif ?>
+        <?php endif ?>
         </div>
     </div>
 </div>
