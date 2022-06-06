@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=$base?>/assets/style.css">
     <script src="https://kit.fontawesome.com/adc9de9a21.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="<?=$base;?>/imgs/questions.png" type="image/x-icon">
     <title>Questões Concurso</title>
 </head>
 <body>
